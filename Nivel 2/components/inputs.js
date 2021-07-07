@@ -16,11 +16,7 @@ Vue.component("inputs", {
         labelComponent: {type: String},
         value: {type: String},
         inputPassword2: {type: String},
-        nameMessageChild: {type: Boolean},
-        mobileMessageChild: {type: Boolean},
-        zipMessageChild: {type: Boolean},
-        emailMessageChild:  {type: Boolean},
-        passMessageChild:  {type: Boolean},
+        messageChild: {type: Boolean},
     },
 
     model:{
@@ -56,12 +52,12 @@ Vue.component("inputs", {
             switch(this.labelComponent){
                 case "Nombre":
                     let nameRegex =  /^[a-z]{6,13}$/i;
-                    if(!this.value && this.nameMessageChild){
+                    if(!this.value && this.messageChild){
                         this.message = "El nombre es obligatorio";
                         this.errorName = true;
                         this.$emit("errorInputName", this.errorName);
                         return true;
-                    }else if(!this.nameMessageChild){
+                    }else if(!this.messageChild){
                         this.message = "";
                     }else if(nameRegex.test(this.value)){
                         this.message = "";
@@ -78,12 +74,12 @@ Vue.component("inputs", {
 
                 case "Teléfono":
                     let mobileRegex =  /^[0-9]{9}$/;
-                    if(!this.value && this.mobileMessageChild){
+                    if(!this.value && this.messageChild){
                         this.message = "El teléfono es obligatorio";
                         this.errorMobile = true;
                         this.$emit("errorInputMobile", this.errorMobile);
                         return true;
-                    }else if(!this.mobileMessageChild){
+                    }else if(!this.messageChild){
                         this.message = "";
                     }else if(mobileRegex.test(this.value)){
                         this.message = "";
@@ -100,12 +96,12 @@ Vue.component("inputs", {
 
                 case "Código Postal":
                     let zipRegex =  /^\d{4,8}$/;
-                    if(!this.value && this.zipMessageChild){
+                    if(!this.value && this.messageChild){
                         this.message = "El código postal es obligatorio";
                         this.errorZip = true;
                         this.$emit("errorInputZip", this.errorZip);
                         return true;
-                    }else if(!this.zipMessageChild){
+                    }else if(!this.messageChild){
                         this.message = "";
                     }else if(zipRegex.test(this.value)){
                         this.message = "";
@@ -123,11 +119,11 @@ Vue.component("inputs", {
                 case "Correo Electrónico":
                     let emailRegex =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-                    if(!this.value && this.emailMessageChild){
+                    if(!this.value && this.messageChild){
                         this.message = "El correo electrónico es obligatorio";
                         this.errorEmail = true;
                         this.$emit("errorInputEmail", this.errorEmail);
-                    }else if(!this.emailMessageChild){
+                    }else if(!this.messageChild){
                         this.message = "";
                     } else if(emailRegex.test(this.value)){
                         this.message = "";
@@ -144,11 +140,11 @@ Vue.component("inputs", {
                 case "Contraseña":
                     let passwordRegex =  /^(?=[a-zA-Z]*)(?=[a-z]*[A-Z])(?=[A-Z]*[a-z])\S{6,13}$/;
 
-                    if(!this.value && this.passMessageChild){
+                    if(!this.value && this.messageChild){
                         this.message = "La contraseña es obligatoria";
                         this.errorPassword = true;
                         this.$emit("errorInputPassword", this.errorPassword); 
-                    }else if(!this.passMessageChild){
+                    }else if(!this.messageChild){
                         this.message = "";
                     }else if(passwordRegex.test(this.value)){                     
                         this.message  = "";

@@ -3,15 +3,15 @@ Vue.component("formulario", {
 
         <div>
             <form @submit.prevent="onSubmit" @keyup="resetForm">
-                <inputs  :nameMessageChild="nameMessageFather" :labelComponent="idInput.inputName" placeholder="Introduzca su nombre" type="text" v-model="name" @errorInputName="checkErrorName=$event" @messageChild="messageFather=$event" ></inputs>
+                <inputs  :messageChild="messageFather" :labelComponent="idInput.inputName" placeholder="Introduzca su nombre" type="text" v-model="name" @errorInputName="checkErrorName=$event" @messageChild="messageFather=$event" ></inputs>
 
-                <inputs :mobileMessageChild="mobileMessageFather" :labelComponent="idInput.inputMobile" placeholder="Introduzca su número de teléfono" type="number" v-model="mobile" @errorInputMobile="checkErrorMobile=$event" ></inputs>
+                <inputs :messageChild="messageFather" :labelComponent="idInput.inputMobile" placeholder="Introduzca su número de teléfono" type="number" v-model="mobile" @errorInputMobile="checkErrorMobile=$event" ></inputs>
 
-                <inputs :zipMessageChild="zipMessageFather"  :labelComponent="idInput.inputZip" placeholder="Introduzca el Código Postal" type="number" v-model="zip" @errorInputZip="checkErrorZip=$event" ></inputs>
+                <inputs :messageChild="messageFather"  :labelComponent="idInput.inputZip" placeholder="Introduzca el Código Postal" type="number" v-model="zip" @errorInputZip="checkErrorZip=$event" ></inputs>
 
-                <inputs :emailMessageChild="emailMessageFather" :labelComponent="idInput.inputEmail" placeholder="Introduzca su correo electrónico" type="email" v-model="email" @errorInputEmail="checkErrorEmail=$event"></inputs>
+                <inputs :messageChild="messageFather" :labelComponent="idInput.inputEmail" placeholder="Introduzca su correo electrónico" type="email" v-model="email" @errorInputEmail="checkErrorEmail=$event"></inputs>
 
-                <inputs :passMessageChild="passMessageFather"  :labelComponent="idInput.inputPassword" placeholder="Introduzca una contraseña" type="password" v-model="password" @errorInputPassword="checkErrorPassword=$event" :inputPassword2="password2"></inputs>
+                <inputs :messageChild="messageFather"  :labelComponent="idInput.inputPassword" placeholder="Introduzca una contraseña" type="password" v-model="password" @errorInputPassword="checkErrorPassword=$event" :inputPassword2="password2"></inputs>
 
                 <password :pass2MessageChild="pass2MessageFather" v-model="password2" :propPassword="password" @errorInputPassword2="checkErrorPassword2=$event" @inputPassword2="password2=$event" placeholder="Escriba de nuevo la contraseña" ></password>
 
@@ -53,11 +53,7 @@ Vue.component("formulario", {
             resultClass: undefined,
 
             //To avoid displaying error messages when reset form
-            nameMessageFather: true,
-            mobileMessageFather: true,
-            zipMessageFather: true,
-            emailMessageFather: true,
-            passMessageFather: true,
+            messageFather: true,
             pass2MessageFather: true,
         }
     },
@@ -67,11 +63,7 @@ Vue.component("formulario", {
     methods: {
 
         resetForm(){
-            this.nameMessageFather = true;
-            this.mobileMessageFather = true;
-            this.zipMessageFather = true;
-            this.emailMessageFather = true;
-            this.passMessageFather = true;
+            this.messageFather = true;
             this.pass2MessageFather = true;
         },
 
@@ -84,7 +76,6 @@ Vue.component("formulario", {
                 this.result="Todos los campos deben estar rellenados correctamente";
                 setTimeout(()=>{ this.show = false;}, 3000); 
                 this.resultClass = true;
-
                 
             }else if(this.name == "" || this.mobile =="" || this.zip == "" || this.email == "" || this.password == "" || this.password2 == "" ){
                 this.show = true;
@@ -96,11 +87,7 @@ Vue.component("formulario", {
                 this.show = true;
                 this.result="Se han enviado los datos correctamente";
                 setTimeout(()=>{ this.show = false;}, 3000);
-                this.nameMessageFather = false;
-                this.mobileMessageFather = false;
-                this.zipMessageFather = false;
-                this.emailMessageFather = false;
-                this.passMessageFather = false;
+                this.messageFather = false;
                 this.pass2MessageFather = false;
                 
                 this.name="";
@@ -110,11 +97,11 @@ Vue.component("formulario", {
                 this.password= ""; 
                 this.password2 = "";
                 this.resultClass = false;
-                
             }
+
             
         }
-      
+        
     },  
 
 })

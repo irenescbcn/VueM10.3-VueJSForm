@@ -11,7 +11,6 @@ Vue.component("password", {
 
     </div>
     `,
-    
     props: {
         propPassword: {type: String},
         value: {type: String},
@@ -35,8 +34,7 @@ Vue.component("password", {
             message: "", 
             errorPassword2: false,
             passwordClass: undefined,
-            
-             
+
         }
     },
 
